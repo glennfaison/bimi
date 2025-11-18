@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  
+  /* Adding BIMI brand colors and design tokens */
+  /* Updated colors to match the Figma design */
+  --color-primary: #003B5C; /* Dark blue for navbar/brand */
+  --color-primary-foreground: #ffffff;
+  
+  --color-secondary: #FF6B6B; /* Salmon/Red for accents */
+  --color-secondary-foreground: #ffffff;
+  
+  --color-accent: #00C4B4; /* Teal for focus areas */
+  --color-accent-foreground: #ffffff;
+  
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+  
+  --color-card: #ffffff;
+  --color-card-foreground: #0a0a0a;
+  
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #0f766e;
+  
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme inline {
+    --color-background: #0a0a0a;
+    --color-foreground: #fafafa;
+    
+    --color-muted: #262626;
+    --color-muted-foreground: #a3a3a3;
+    
+    --color-card: #171717;
+    --color-card-foreground: #fafafa;
+    
+    --color-border: #262626;
+    --color-input: #262626;
+  }
+}
