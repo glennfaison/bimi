@@ -9,7 +9,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-[#FF6B6B] rounded flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 bg-secondary rounded flex items-center justify-center text-white font-bold">
                 L
               </div>
               <span className="text-xl font-bold text-gray-900">LOGO</span>
@@ -32,7 +32,7 @@ export function Footer() {
 
           {/* Services Column */}
           <div>
-            <h3 className="text-lg font-bold text-[#FF6B6B] mb-4">Services</h3>
+            <h3 className="text-lg font-bold text-secondary mb-4">Services</h3>
             <ul className="space-y-3">
               <li><Link href="#" className="text-gray-600 hover:text-gray-900">Schools, scholarships</Link></li>
               <li><Link href="#" className="text-gray-600 hover:text-gray-900">Grant & Business</Link></li>
@@ -43,18 +43,18 @@ export function Footer() {
 
           {/* Company Column */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg font-bold text-[#FF6B6B] mb-4">Company</h3>
+            <h3 className="text-lg font-bold text-secondary mb-4">Company</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-gray-600">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                <MapPin className="w-5 h-5 mt-0.5 shrink-0" />
                 <span>Ndobo-BONABERI, DOUALA CAMEROON</span>
               </li>
               <li className="flex items-center gap-2 text-gray-600">
-                <Phone className="w-5 h-5 flex-shrink-0" />
+                <Phone className="w-5 h-5 shrink-0" />
                 <span>+(237)6 99 67 03 37</span>
               </li>
               <li className="flex items-center gap-2 text-gray-600">
-                <Mail className="w-5 h-5 flex-shrink-0" />
+                <Mail className="w-5 h-5 shrink-0" />
                 <span>support@bimiconsulting.org</span>
               </li>
             </ul>

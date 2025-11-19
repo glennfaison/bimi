@@ -4,6 +4,7 @@ import { ProjectsPreview } from "@/components/landing/projects-preview";
 import { AboutSection } from "@/components/landing/about-section";
 import { FocusAreas } from "@/components/landing/focus-areas";
 import { PartnersPreview } from "@/components/landing/partners-preview";
+import { Footer } from "@/components/footer";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -33,6 +34,8 @@ export default async function Home() {
       <FocusAreas />
 
       <PartnersPreview />
+
+      <Footer />
     </div>
   );
 }

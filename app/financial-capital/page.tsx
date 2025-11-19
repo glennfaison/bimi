@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import Image from "next/image";
 
 export default function FinancialCapitalPage() {
@@ -133,6 +134,7 @@ export default function FinancialCapitalPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

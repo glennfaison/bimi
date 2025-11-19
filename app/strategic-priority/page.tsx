@@ -1,3 +1,5 @@
+import { Footer } from "@/components/footer";
+import { PartnersPreview } from "@/components/landing/partners-preview";
 import Image from "next/image";
 
 export default function StrategicPriorityPage() {
@@ -117,43 +119,9 @@ export default function StrategicPriorityPage() {
         </div>
       </div>
 
-      {/* Partners and Sponsors */}
-      <div className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-16">
-            Partners and Sponsors
-          </h2>
-          <div className="mx-auto grid max-w-lg grid-cols-1 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-3 sm:gap-x-10 lg:mx-0 lg:max-w-none">
-            <div className="flex justify-center">
-              <Image
-                src="/muyang-group-logo.jpg"
-                alt="Muyang Group"
-                width={200}
-                height={100}
-                className="max-h-24 w-auto object-contain"
-              />
-            </div>
-            <div className="flex justify-center">
-              <Image
-                src="/ntala-show-logo.jpg"
-                alt="Ntala Show"
-                width={200}
-                height={100}
-                className="max-h-24 w-auto object-contain"
-              />
-            </div>
-            <div className="flex justify-center">
-              <Image
-                src="/yellow-lock-logo.jpg"
-                alt="Partner Logo"
-                width={200}
-                height={100}
-                className="max-h-24 w-auto object-contain"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <PartnersPreview />
+
+      <Footer />
     </div>
   );
 }

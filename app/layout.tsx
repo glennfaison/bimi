@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Navbar } from '@/components/navbar'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -36,8 +37,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
-        {children}
+      <body className={`font-sans antialiased h-screen flex flex-col overflow-hidden`}>
+        <Navbar />
+        <main className='flex flex-col grow overflow-y-auto'>
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>

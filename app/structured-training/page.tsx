@@ -1,5 +1,6 @@
 import { PartnersPreview } from "@/components/landing/partners-preview";
 import Image from "next/image";
+import { Footer } from "@/components/footer";
 
 export default function StructuredTrainingPage() {
   return (
@@ -178,6 +179,7 @@ export default function StructuredTrainingPage() {
       </section>
 
       <PartnersPreview />
+      <Footer />
     </main>
   );
 }

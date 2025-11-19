@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PartnersPreview } from "@/components/landing/partners-preview";
+import { Footer } from "@/components/footer";
 
 const pillars = [
   {
@@ -94,6 +95,7 @@ export default function PillarsPage() {
 
       {/* Partners Section */}
       <PartnersPreview />
+      <Footer />
     </div>
   );
 }

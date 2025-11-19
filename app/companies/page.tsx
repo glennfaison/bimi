@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { PartnersPreview } from "@/components/landing/partners-preview";
 import Image from "next/image";
+import { Footer } from "@/components/footer";
 
 export const revalidate = 3600;
 
@@ -105,6 +106,7 @@ export default async function CompaniesPage() {
       </section>
 
       <PartnersPreview />
+      <Footer />
     </div>
   );
 }

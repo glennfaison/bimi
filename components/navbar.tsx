@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
@@ -13,11 +15,11 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-[#003B5C] text-white sticky top-0 z-50 border-b border-white/10">
+    <nav className="bg-primary text-white sticky top-0 z-50 border-b border-white/10">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center gap-2">
+            <Link href="/" className="shrink-0 flex items-center gap-2">
               <span className="text-2xl font-bold tracking-wider">LOGO</span>
             </Link>
           </div>
@@ -32,7 +34,7 @@ export function Navbar() {
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium hover:text-gray-300 transition-colors outline-none">
                 About Us <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-primary/90 text-gray-200">
                 <DropdownMenuItem>
                   <Link href="/strategic-priority" className="w-full">Our Strategic Priority</Link>
                 </DropdownMenuItem>
@@ -58,7 +60,7 @@ export function Navbar() {
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium hover:text-gray-300 transition-colors outline-none">
                 Entrepreneurship Programmes <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-primary/90 text-gray-200">
                 <DropdownMenuItem>
                   <Link href="/financial-capital" className="w-full">Access to Capital</Link>
                 </DropdownMenuItem>
@@ -75,7 +77,7 @@ export function Navbar() {
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium hover:text-gray-300 transition-colors outline-none">
                 Initiative <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-primary/90 text-gray-200">
                 <DropdownMenuItem>
                   <Link href="/climate" className="w-full">Climate</Link>
                 </DropdownMenuItem>
@@ -89,7 +91,7 @@ export function Navbar() {
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium hover:text-gray-300 transition-colors outline-none">
                 News & Reports <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-primary/90 text-gray-200">
                 <DropdownMenuItem>Latest News</DropdownMenuItem>
                 <DropdownMenuItem>Reports</DropdownMenuItem>
               </DropdownMenuContent>
@@ -99,7 +101,7 @@ export function Navbar() {
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium hover:text-gray-300 transition-colors outline-none">
                 Resources <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-primary/90 text-gray-200">
                 <DropdownMenuItem>Downloads</DropdownMenuItem>
                 <DropdownMenuItem>Gallery</DropdownMenuItem>
               </DropdownMenuContent>
@@ -120,7 +122,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#003B5C] border-t border-white/10">
+        <div className="md:hidden bg-primary border-t border-white/10">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">Home</Link>
             <Link href="/strategic-priority" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">About Us</Link>

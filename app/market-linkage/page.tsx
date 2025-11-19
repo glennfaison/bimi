@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import Image from "next/image";
 
 export default function MarketLinkagePage() {
@@ -116,6 +117,7 @@ export default function MarketLinkagePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

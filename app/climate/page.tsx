@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { PageHeader } from "@/components/page-header";
 import { createClient } from "@/lib/supabase/server";
 
@@ -41,6 +42,8 @@ export default async function ClimatePage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
