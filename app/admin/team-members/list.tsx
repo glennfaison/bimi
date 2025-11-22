@@ -8,15 +8,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Edit, Plus, Trash2 } from 'lucide-react';
+import { Edit, Plus } from 'lucide-react';
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import DeleteMemberButton from "./DeleteMemberButton";
 
 export const revalidate = 0;
 
-export default async function TeamContent() {
+export default async function TeamMembersContent() {
   const supabase = await createClient();
-  
   const { data: members } = await supabase
     .from("team_members")
     .select("*")
@@ -27,12 +27,11 @@ export default async function TeamContent() {
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">Team Members</h1>
         <Button asChild>
-          <Link href="/admin/team/new">
+          <Link href="/admin/team-members/new">
             <Plus className="mr-2 h-4 w-4" /> Add Member
           </Link>
         </Button>
       </div>
-
       <div className="rounded-md border border-gray-200 bg-white">
         <Table>
           <TableHeader>
@@ -66,11 +65,12 @@ export default async function TeamContent() {
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-2">
                     <Button variant="ghost" size="sm" asChild className="hover:bg-gray-100">
-                      <Link href={`/admin/team/${member.id}`}>
+                      <Link href={`/admin/team-members/${member.id}`}>
                         <Edit className="h-4 w-4" />
                         <span className="sr-only">Edit</span>
                       </Link>
                     </Button>
+                    <DeleteMemberButton memberId={member.id} />
                   </div>
                 </TableCell>
               </TableRow>

@@ -1,29 +1,15 @@
-import { createClient } from "@/lib/supabase/server";
-import { PillarForm } from "@/components/admin/pillar-form";
-import { notFound } from 'next/navigation';
+import { PillarForm } from '@/components/admin/pillar-form';
+import { createClient } from '@/lib/supabase/server';
 
-export default async function EditPillar({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+interface Params { id: string }
+
+export default async function EditPillarPage({ params }: { params: Params }) {
   const supabase = await createClient();
-  
   const { data: pillar } = await supabase
-    .from("pillars")
-    .select("*")
-    .eq("id", id)
+    .from('pillars')
+    .select('*')
+    .eq('id', params.id)
     .single();
 
-  if (!pillar) {
-    notFound();
-  }
-
-  return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Edit Pillar</h1>
-      <PillarForm initialData={pillar} isEditing={true} />
-    </div>
-  );
+  return <PillarForm initialData={pillar} isEditing />;
 }

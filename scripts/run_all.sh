@@ -53,30 +53,14 @@ echo ""
 # Get script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Array of scripts in order
-scripts=(
-    "001_create_content_tables.sql"
-    "002_seed_sample_data.sql"
-    "003_create_pillars_table.sql"
-    "004_create_storage_bucket.sql"
-    "005_seed_existing_data.sql"
-)
-
-# Run each script
-for script in "${scripts[@]}"; do
-    script_path="$SCRIPT_DIR/$script"
-    
-    if [ ! -f "$script_path" ]; then
-        echo -e "${YELLOW}⚠${NC}  Script not found: $script (skipping)"
-        continue
-    fi
-    
-    echo -e "${BLUE}▶${NC}  Running: $script"
-    
+# Find and run all .sql files in sorted order
+for script_path in $(find "$SCRIPT_DIR" -maxdepth 1 -name "*.sql" | sort); do
+    script_name=$(basename "$script_path")
+    echo -e "${BLUE}▶${NC}  Running: $script_name"
     if psql "$DATABASE_URL" -f "$script_path" > /dev/null 2>&1; then
-        echo -e "${GREEN}✓${NC}  Completed: $script"
+        echo -e "${GREEN}✓${NC}  Completed: $script_name"
     else
-        echo -e "${YELLOW}⚠${NC}  Completed with warnings: $script (this is usually OK if tables already exist)"
+        echo -e "${YELLOW}⚠${NC}  Completed with warnings: $script_name (this is usually OK if tables already exist)"
     fi
     echo ""
 done

@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Edit, Plus } from 'lucide-react';
 import Link from "next/link";
+import DeleteCompanyButton from "./DeleteCompanyButton";
 
 export const revalidate = 0;
 
@@ -64,6 +65,7 @@ export default async function CompaniesContent() {
                       <span className="sr-only">Edit</span>
                     </Link>
                   </Button>
+                  <DeleteCompanyButton companyId={card.id} />
                 </TableCell>
               </TableRow>
             ))}

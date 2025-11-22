@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Edit, Plus } from 'lucide-react';
 import Link from "next/link";
 import Image from "next/image";
+import DeletePillarButton from "./DeletePillarButton";
 
 export const revalidate = 0;
 
@@ -75,6 +76,7 @@ export default async function PillarsPage() {
                       <Edit className="h-4 w-4" />
                     </Link>
                   </Button>
+                  <DeletePillarButton pillarId={pillar.id} />
                 </TableCell>
               </TableRow>
             ))}

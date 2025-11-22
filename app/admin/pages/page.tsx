@@ -8,8 +8,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Edit, Plus } from 'lucide-react';
+import { Edit, Plus, Trash2 } from 'lucide-react';
 import Link from "next/link";
+import DeletePageSectionButton from "./DeletePageSectionButton";
 
 export const revalidate = 0;
 
@@ -64,6 +65,7 @@ export default async function PagesContent() {
                       <span className="sr-only">Edit</span>
                     </Link>
                   </Button>
+                  <DeletePageSectionButton sectionId={section.id} />
                 </TableCell>
               </TableRow>
             ))}

@@ -11,8 +11,10 @@ import { Button } from "@/components/ui/button";
 const navigation = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Page Content", href: "/admin/pages", icon: FileText },
-  { name: "Team Members", href: "/admin/team", icon: Users },
-  { name: "Companies & Partners", href: "/admin/companies", icon: Building2 },
+  { name: "Team Members", href: "/admin/team-members", icon: Users },
+  { name: "Companies", href: "/admin/companies", icon: Building2 },
+  { name: "Partners", href: "/admin/partners", icon: Building2 },
+  { name: "Sponsors", href: "/admin/sponsors", icon: Building2 },
   { name: "Pillars of Inspiration", href: "/admin/pillars", icon: ImageIcon },
   { name: "Impact Stories", href: "/admin/impact", icon: ImageIcon },
   { name: "Settings", href: "/admin/settings", icon: Settings },
