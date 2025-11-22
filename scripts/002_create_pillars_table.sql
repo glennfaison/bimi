@@ -18,28 +18,13 @@ create index if not exists pillars_order_idx on public.pillars(order_index);
 -- Enable RLS
 alter table public.pillars enable row level security;
 
--- Public read access
-create policy "Anyone can view published pillars"
-  on public.pillars for select
-  using (is_published = true);
-
--- Admin policies
-create policy "Authenticated users can insert pillars"
-  on public.pillars for insert
+create policy "Full access for authenticated users"
+  on public.pillars
   to authenticated
+  using (true)
   with check (true);
 
-create policy "Authenticated users can update pillars"
-  on public.pillars for update
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can delete pillars"
-  on public.pillars for delete
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can view all pillars"
-  on public.pillars for select
-  to authenticated
+create policy "Anyone can view pillars"
+  on public.pillars
+  for select
   using (true);

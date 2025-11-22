@@ -15,28 +15,13 @@ create index if not exists partners_published_idx on public.partners(is_publishe
 
 alter table public.partners enable row level security;
 
--- Public read access for published partners
-create policy "Anyone can view published partners"
-  on public.partners for select
-  using (is_published = true);
-
--- Admin policies
-create policy "Authenticated users can insert partners"
-  on public.partners for insert
+create policy "Full access for authenticated users"
+  on public.partners
   to authenticated
+  using (true)
   with check (true);
 
-create policy "Authenticated users can update partners"
-  on public.partners for update
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can delete partners"
-  on public.partners for delete
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can view all partners"
-  on public.partners for select
-  to authenticated
+create policy "Anyone can view partners"
+  on public.partners
+  for select
   using (true);

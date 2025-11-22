@@ -70,101 +70,43 @@ alter table public.page_sections enable row level security;
 alter table public.team_members enable row level security;
 alter table public.impact_stories enable row level security;
 
--- Public read access for published content
-create policy "Anyone can view published cards"
-  on public.cards for select
-  using (is_published = true);
-
-create policy "Anyone can view published page sections"
-  on public.page_sections for select
-  using (is_published = true);
-
-create policy "Anyone can view published team members"
-  on public.team_members for select
-  using (is_published = true);
-
-create policy "Anyone can view published impact stories"
-  on public.impact_stories for select
-  using (is_published = true);
-
--- Admin policies (authenticated users can do everything)
-create policy "Authenticated users can insert cards"
-  on public.cards for insert
+-- Full access for authenticated users
+create policy "Full access for authenticated users on cards"
+  on public.cards
   to authenticated
+  using (true)
   with check (true);
-
-create policy "Authenticated users can update cards"
-  on public.cards for update
-  to authenticated
+create policy "Anyone can view cards"
+  on public.cards
+  for select
   using (true);
 
-create policy "Authenticated users can delete cards"
-  on public.cards for delete
+create policy "Full access for authenticated users on page_sections"
+  on public.page_sections
   to authenticated
-  using (true);
-
-create policy "Authenticated users can view all cards"
-  on public.cards for select
-  to authenticated
-  using (true);
-
--- Similar policies for other tables
-create policy "Authenticated users can insert page sections"
-  on public.page_sections for insert
-  to authenticated
+  using (true)
   with check (true);
-
-create policy "Authenticated users can update page sections"
-  on public.page_sections for update
-  to authenticated
+create policy "Anyone can view page_sections"
+  on public.page_sections
+  for select
   using (true);
 
-create policy "Authenticated users can delete page sections"
-  on public.page_sections for delete
+create policy "Full access for authenticated users on team_members"
+  on public.team_members
   to authenticated
-  using (true);
-
-create policy "Authenticated users can view all page sections"
-  on public.page_sections for select
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can insert team members"
-  on public.team_members for insert
-  to authenticated
+  using (true)
   with check (true);
-
-create policy "Authenticated users can update team members"
-  on public.team_members for update
-  to authenticated
+create policy "Anyone can view team_members"
+  on public.team_members
+  for select
   using (true);
 
-create policy "Authenticated users can delete team members"
-  on public.team_members for delete
+create policy "Full access for authenticated users on impact_stories"
+  on public.impact_stories
   to authenticated
-  using (true);
-
-create policy "Authenticated users can view all team members"
-  on public.team_members for select
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can insert impact stories"
-  on public.impact_stories for insert
-  to authenticated
+  using (true)
   with check (true);
-
-create policy "Authenticated users can update impact stories"
-  on public.impact_stories for update
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can delete impact stories"
-  on public.impact_stories for delete
-  to authenticated
-  using (true);
-
-create policy "Authenticated users can view all impact stories"
-  on public.impact_stories for select
-  to authenticated
+create policy "Anyone can view impact_stories"
+  on public.impact_stories
+  for select
   using (true);
