@@ -56,24 +56,24 @@ export default async function AdminDashboard() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+        <p className="text-gray-600">
           Welcome to the BIMI content management system.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
-          <Card key={stat.title}>
+          <Card key={stat.title} className="bg-white border-gray-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium text-gray-700">
                 {stat.title}
               </CardTitle>
-              <stat.icon className="h-4 w-4 text-muted-foreground" />
+              <stat.icon className="h-4 w-4 text-gray-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+              <p className="text-xs text-gray-600">
                 {stat.description}
               </p>
             </CardContent>
@@ -82,24 +82,24 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+        <Card className="col-span-4 bg-white border-gray-200">
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle className="text-gray-900">Recent Activity</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-gray-600">
               No recent activity to display.
             </div>
           </CardContent>
         </Card>
-        <Card className="col-span-3">
+        <Card className="col-span-3 bg-white border-gray-200">
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
+            <CardTitle className="text-gray-900">Quick Actions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="flex items-center gap-2 text-sm">
-              <Eye className="h-4 w-4 text-muted-foreground" />
-              <a href="/" target="_blank" className="hover:underline">View Live Site</a>
+              <Eye className="h-4 w-4 text-gray-500" />
+              <a href="/" target="_blank" className="text-primary hover:underline">View Live Site</a>
             </div>
           </CardContent>
         </Card>

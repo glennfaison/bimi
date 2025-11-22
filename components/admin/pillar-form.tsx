@@ -59,11 +59,11 @@ export function PillarForm({ initialData, isEditing = false }: PillarFormProps) 
   };
 
   return (
-    <Card>
+    <Card className="bg-white border-gray-200">
       <CardContent className="pt-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="name">Name *</Label>
+            <Label htmlFor="name" className="text-gray-700">Name *</Label>
             <Input
               id="name"
               required
@@ -74,7 +74,7 @@ export function PillarForm({ initialData, isEditing = false }: PillarFormProps) 
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="country">Country</Label>
+            <Label htmlFor="country" className="text-gray-700">Country</Label>
             <Input
               id="country"
               value={formData.country}
@@ -84,7 +84,7 @@ export function PillarForm({ initialData, isEditing = false }: PillarFormProps) 
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="bio">Biography</Label>
+            <Label htmlFor="bio" className="text-gray-700">Biography</Label>
             <Textarea
               id="bio"
               value={formData.bio}
@@ -101,7 +101,7 @@ export function PillarForm({ initialData, isEditing = false }: PillarFormProps) 
           />
 
           <div className="space-y-2">
-            <Label htmlFor="order">Display Order</Label>
+            <Label htmlFor="order" className="text-gray-700">Display Order</Label>
             <Input
               id="order"
               type="number"
@@ -118,7 +118,7 @@ export function PillarForm({ initialData, isEditing = false }: PillarFormProps) 
                 checked={formData.is_published}
                 onCheckedChange={(checked) => setFormData({ ...formData, is_published: checked })}
               />
-              <Label htmlFor="published" className="cursor-pointer">
+              <Label htmlFor="published" className="cursor-pointer text-gray-700">
                 Published
               </Label>
             </div>

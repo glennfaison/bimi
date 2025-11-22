@@ -22,7 +22,7 @@ export default async function EditPillar({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Edit Pillar</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Edit Pillar</h1>
       <PillarForm initialData={pillar} isEditing={true} />
     </div>
   );

@@ -22,7 +22,7 @@ export default async function EditCard({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Edit {card.category}</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Edit {card.category}</h1>
       <CardForm initialData={card} isEditing={true} />
     </div>
   );

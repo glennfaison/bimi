@@ -67,11 +67,11 @@ export function CardForm({ initialData, isEditing = false }: CardFormProps) {
   };
 
   return (
-    <Card>
+    <Card className="bg-white border-gray-200">
       <CardContent className="pt-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="title">Name *</Label>
+            <Label htmlFor="title" className="text-gray-700">Name *</Label>
             <Input
               id="title"
               required
@@ -82,7 +82,7 @@ export function CardForm({ initialData, isEditing = false }: CardFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="category">Category *</Label>
+            <Label htmlFor="category" className="text-gray-700">Category *</Label>
             <Select
               value={formData.category}
               onValueChange={(value) => setFormData({ ...formData, category: value })}
@@ -99,7 +99,7 @@ export function CardForm({ initialData, isEditing = false }: CardFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description" className="text-gray-700">Description</Label>
             <Textarea
               id="description"
               value={formData.description}
@@ -115,7 +115,7 @@ export function CardForm({ initialData, isEditing = false }: CardFormProps) {
           />
 
           <div className="space-y-2">
-            <Label htmlFor="link_url">Website URL</Label>
+            <Label htmlFor="link_url" className="text-gray-700">Website URL</Label>
             <Input
               id="link_url"
               type="url"
@@ -126,7 +126,7 @@ export function CardForm({ initialData, isEditing = false }: CardFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="order">Display Order</Label>
+            <Label htmlFor="order" className="text-gray-700">Display Order</Label>
             <Input
               id="order"
               type="number"
@@ -143,7 +143,7 @@ export function CardForm({ initialData, isEditing = false }: CardFormProps) {
                 checked={formData.is_published}
                 onCheckedChange={(checked) => setFormData({ ...formData, is_published: checked })}
               />
-              <Label htmlFor="published" className="cursor-pointer">
+              <Label htmlFor="published" className="cursor-pointer text-gray-700">
                 Published
               </Label>
             </div>

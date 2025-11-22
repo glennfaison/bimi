@@ -22,7 +22,7 @@ export default async function EditPageSection({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Edit Page Section</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Edit Page Section</h1>
       <PageSectionForm initialData={section} isEditing={true} />
     </div>
   );

@@ -1,0 +1,25 @@
+name: Run DB Migrations
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  migrate:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install PostgreSQL client
+        run: brew install postgresql
+
+      - name: Make migration script executable
+        run: chmod +x ./scripts/run_all.sh
+
+      - name: Run migration scripts
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: ./scripts/run_all.sh
+        shell: zsh

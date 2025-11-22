@@ -25,7 +25,7 @@ export default async function PillarsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Pillars of Inspiration</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Pillars of Inspiration</h1>
         <Button asChild>
           <Link href="/admin/pillars/new">
             <Plus className="mr-2 h-4 w-4" /> Add Pillar
@@ -33,20 +33,20 @@ export default async function PillarsPage() {
         </Button>
       </div>
 
-      <div className="rounded-md border bg-card">
+      <div className="rounded-md border border-gray-200 bg-white">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>Person</TableHead>
-              <TableHead>Country</TableHead>
-              <TableHead>Order</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+            <TableRow className="bg-gray-50 hover:bg-gray-50">
+              <TableHead className="text-gray-700">Person</TableHead>
+              <TableHead className="text-gray-700">Country</TableHead>
+              <TableHead className="text-gray-700">Order</TableHead>
+              <TableHead className="text-gray-700">Status</TableHead>
+              <TableHead className="text-right text-gray-700">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {pillars?.map((pillar) => (
-              <TableRow key={pillar.id}>
+              <TableRow key={pillar.id} className="hover:bg-gray-50">
                 <TableCell className="flex items-center gap-3">
                   {pillar.image_url && (
                     <div className="relative w-10 h-10 rounded overflow-hidden">
@@ -58,10 +58,10 @@ export default async function PillarsPage() {
                       />
                     </div>
                   )}
-                  <span className="font-medium">{pillar.name}</span>
+                  <span className="font-medium text-gray-900">{pillar.name}</span>
                 </TableCell>
-                <TableCell>{pillar.country}</TableCell>
-                <TableCell>{pillar.order_index}</TableCell>
+                <TableCell className="text-gray-700">{pillar.country}</TableCell>
+                <TableCell className="text-gray-700">{pillar.order_index}</TableCell>
                 <TableCell>
                   <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
                     pillar.is_published ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
@@ -70,7 +70,7 @@ export default async function PillarsPage() {
                   </span>
                 </TableCell>
                 <TableCell className="text-right">
-                  <Button variant="ghost" size="sm" asChild>
+                  <Button variant="ghost" size="sm" asChild className="hover:bg-gray-100">
                     <Link href={`/admin/pillars/${pillar.id}`}>
                       <Edit className="h-4 w-4" />
                     </Link>

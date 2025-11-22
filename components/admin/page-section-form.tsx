@@ -67,11 +67,11 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
-      <Card>
+      <Card className="bg-white border-gray-200">
         <CardContent className="pt-6 space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="page_slug">Page</Label>
+              <Label htmlFor="page_slug" className="text-gray-700">Page</Label>
               <Select
                 value={formData.page_slug}
                 onValueChange={(value) => setFormData({ ...formData, page_slug: value })}
@@ -89,7 +89,7 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="section_key">Section Key</Label>
+              <Label htmlFor="section_key" className="text-gray-700">Section Key</Label>
               <Input
                 id="section_key"
                 value={formData.section_key}
@@ -101,7 +101,7 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title" className="text-gray-700">Title</Label>
             <Input
               id="title"
               value={formData.title}
@@ -111,7 +111,7 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="content">Content</Label>
+            <Label htmlFor="content" className="text-gray-700">Content</Label>
             <Textarea
               id="content"
               value={formData.content}
@@ -128,7 +128,7 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
           />
 
           <div className="space-y-2">
-            <Label htmlFor="order">Display Order</Label>
+            <Label htmlFor="order" className="text-gray-700">Display Order</Label>
             <Input
               id="order"
               type="number"
@@ -145,7 +145,7 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
                 checked={formData.is_published}
                 onCheckedChange={(checked) => setFormData({ ...formData, is_published: checked })}
               />
-              <Label htmlFor="published" className="cursor-pointer">
+              <Label htmlFor="published" className="cursor-pointer text-gray-700">
                 Published
               </Label>
             </div>
