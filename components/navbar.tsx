@@ -45,7 +45,7 @@ export function Navbar() {
                   <Link href="/our-people" className="w-full">Our People</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/companies" className="w-full">Businesses we have work with</Link>
+                  <Link href="/companies" className="w-full">Businesses we have worked with</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link href="/partners" className="w-full">Our Partners and Sponsors</Link>
