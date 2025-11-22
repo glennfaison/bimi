@@ -1,56 +1,19 @@
 import Image from "next/image";
+import { createClient } from "@/lib/supabase/server";
 import { PartnersPreview } from "@/components/landing/partners-preview";
 import { Footer } from "@/components/footer";
 
-const pillars = [
-  {
-    name: "Rebecca Enonchong",
-    country: "Cameroon",
-    image: "/placeholder.svg?height=400&width=400&text=Rebecca+Enonchong"
-  },
-  {
-    name: "Magatte Wade",
-    country: "Senegal",
-    image: "/placeholder.svg?height=400&width=400&text=Magatte+Wade"
-  },
-  {
-    name: "Tony Elumelu",
-    country: "Nigeria",
-    image: "/placeholder.svg?height=400&width=400&text=Tony+Elumelu"
-  },
-  {
-    name: "Foster Awintiti Akugri",
-    country: "Ghana",
-    image: "/placeholder.svg?height=400&width=400&text=Foster+Awintiti"
-  },
-  {
-    name: "Aliko Dangote",
-    country: "Nigeria",
-    image: "/placeholder.svg?height=400&width=400&text=Aliko+Dangote"
-  },
-  {
-    name: "Mamadou Kwidjim",
-    country: "Cameroon",
-    image: "/placeholder.svg?height=400&width=400&text=Mamadou+Kwidjim"
-  },
-  {
-    name: "Asma Mansour",
-    country: "Tunisia",
-    image: "/placeholder.svg?height=400&width=400&text=Asma+Mansour"
-  },
-  {
-    name: "Iyinoluwa Aboyeji",
-    country: "Nigeria",
-    image: "/placeholder.svg?height=400&width=400&text=Iyinoluwa+Aboyeji"
-  },
-  {
-    name: "Yasmin Belo-Osagie",
-    country: "Nigeria",
-    image: "/placeholder.svg?height=400&width=400&text=Yasmin+Belo-Osagie"
-  }
-];
+export const revalidate = 3600;
 
-export default function PillarsPage() {
+export default async function PillarsPage() {
+  const supabase = await createClient();
+  
+  const { data: pillars } = await supabase
+    .from("pillars")
+    .select("*")
+    .eq("is_published", true)
+    .order("order_index");
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -74,11 +37,12 @@ export default function PillarsPage() {
       {/* Pillars Grid */}
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {pillars.map((pillar) => (
-            <div key={pillar.name} className="flex flex-col">
+          {pillars && pillars.length > 0 ? (
+            pillars.map((pillar) => (
+            <div key={pillar.id} className="flex flex-col">
               <div className="relative aspect-square w-full overflow-hidden bg-muted">
                 <Image
-                  src={pillar.image || "/placeholder.svg"}
+                  src={pillar.image_url || "/placeholder.svg"}
                   alt={pillar.name}
                   fill
                   className="object-cover transition-transform hover:scale-105"
@@ -89,7 +53,12 @@ export default function PillarsPage() {
                 <p className="text-base">Country: {pillar.country}</p>
               </div>
             </div>
-          ))}
+          ))
+          ) : (
+            <div className="col-span-full text-center py-12 text-muted-foreground">
+              No pillars of inspiration yet.
+            </div>
+          )}
         </div>
       </div>
 

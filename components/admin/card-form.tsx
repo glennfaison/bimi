@@ -17,22 +17,23 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageUpload } from "./image-upload";
+import type { Card as CardType } from "@/lib/types";
 
-interface PageSectionFormProps {
-  initialData?: any;
+interface CardFormProps {
+  initialData?: CardType;
   isEditing?: boolean;
 }
 
-export function PageSectionForm({ initialData, isEditing = false }: PageSectionFormProps) {
+export function CardForm({ initialData, isEditing = false }: CardFormProps) {
   const router = useRouter();
   const supabase = createClient();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    page_slug: initialData?.page_slug || "landing",
-    section_key: initialData?.section_key || "",
     title: initialData?.title || "",
-    content: initialData?.content || "",
+    description: initialData?.description || "",
     image_url: initialData?.image_url || "",
+    link_url: initialData?.link_url || "",
+    category: initialData?.category || "partner",
     order_index: initialData?.order_index || 0,
     is_published: initialData?.is_published ?? true,
   });
@@ -44,88 +45,85 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
     try {
       if (isEditing) {
         const { error } = await supabase
-          .from("page_sections")
+          .from("cards")
           .update(formData)
-          .eq("id", initialData.id);
+          .eq("id", initialData!.id);
         if (error) throw error;
       } else {
         const { error } = await supabase
-          .from("page_sections")
+          .from("cards")
           .insert([formData]);
         if (error) throw error;
       }
       
-      router.push("/admin/pages");
+      router.push("/admin/companies");
       router.refresh();
     } catch (error) {
-      console.error("Error saving section:", error);
-      alert("Failed to save section");
+      console.error("Error saving card:", error);
+      alert("Error saving. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
-      <Card>
-        <CardContent className="pt-6 space-y-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="page_slug">Page</Label>
-              <Select
-                value={formData.page_slug}
-                onValueChange={(value) => setFormData({ ...formData, page_slug: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select page" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="landing">Landing Page</SelectItem>
-                  <SelectItem value="climate">Climate</SelectItem>
-                  <SelectItem value="strategic-priority">Strategic Priority</SelectItem>
-                  <SelectItem value="pillars">Pillars of Inspiration</SelectItem>
-                  <SelectItem value="about">About Us</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="section_key">Section Key</Label>
-              <Input
-                id="section_key"
-                value={formData.section_key}
-                onChange={(e) => setFormData({ ...formData, section_key: e.target.value })}
-                placeholder="e.g., hero, about, features"
-                required
-              />
-            </div>
-          </div>
-
+    <Card>
+      <CardContent className="pt-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title">Name *</Label>
             <Input
               id="title"
+              required
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              placeholder="Section title"
+              placeholder="Company/Partner name"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="content">Content</Label>
+            <Label htmlFor="category">Category *</Label>
+            <Select
+              value={formData.category}
+              onValueChange={(value) => setFormData({ ...formData, category: value })}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="company">Company</SelectItem>
+                <SelectItem value="partner">Partner</SelectItem>
+                <SelectItem value="sponsor">Sponsor</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
             <Textarea
-              id="content"
-              value={formData.content}
-              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              placeholder="Section content..."
-              className="min-h-[200px]"
+              id="description"
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              placeholder="Brief description..."
             />
           </div>
 
           <ImageUpload
             currentImageUrl={formData.image_url}
             onImageUploaded={(url) => setFormData({ ...formData, image_url: url })}
-            folder="pages"
+            folder={formData.category}
           />
+
+          <div className="space-y-2">
+            <Label htmlFor="link_url">Website URL</Label>
+            <Input
+              id="link_url"
+              type="url"
+              value={formData.link_url}
+              onChange={(e) => setFormData({ ...formData, link_url: e.target.value })}
+              placeholder="https://..."
+            />
+          </div>
 
           <div className="space-y-2">
             <Label htmlFor="order">Display Order</Label>
@@ -151,20 +149,20 @@ export function PageSectionForm({ initialData, isEditing = false }: PageSectionF
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Saving..." : isEditing ? "Update Section" : "Create Section"}
+              {isLoading ? "Saving..." : isEditing ? "Update" : "Create"}
             </Button>
             <Button
               type="button"
               variant="outline"
-              onClick={() => router.push("/admin/pages")}
+              onClick={() => router.push("/admin/companies")}
             >
               Cancel
             </Button>
           </div>
-        </CardContent>
-      </Card>
-    </form>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

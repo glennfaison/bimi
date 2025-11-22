@@ -13,6 +13,7 @@ const navigation = [
   { name: "Page Content", href: "/admin/pages", icon: FileText },
   { name: "Team Members", href: "/admin/team", icon: Users },
   { name: "Companies & Partners", href: "/admin/companies", icon: Building2 },
+  { name: "Pillars of Inspiration", href: "/admin/pillars", icon: ImageIcon },
   { name: "Impact Stories", href: "/admin/impact", icon: ImageIcon },
   { name: "Settings", href: "/admin/settings", icon: Settings },
 ];

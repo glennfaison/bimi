@@ -49,3 +49,27 @@ export interface ImpactStory {
   created_at: string;
   updated_at: string;
 }
+
+export interface Pillar {
+  id: string;
+  name: string;
+  country: string;
+  bio: string | null;
+  image_url: string | null;
+  order_index: number;
+  is_published: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Pillar {
+  id: string;
+  name: string;
+  country: string | null;
+  bio: string | null;
+  image_url: string | null;
+  order_index: number;
+  is_published: boolean;
+  created_at: string;
+  updated_at: string;
+}
