@@ -1,18 +1,12 @@
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/server";
 import { PartnersPreview } from "@/components/landing/partners-preview";
 import { Footer } from "@/components/footer";
+import { pillarsOfInspiration } from "@/data/pillars-of-inspiration";
 
 export const revalidate = 3600;
 
-export default async function PillarsPage() {
-  const supabase = await createClient();
-  
-  const { data: pillars } = await supabase
-    .from("pillars")
-    .select("*")
-    .eq("is_published", true)
-    .order("order_index");
+export default function PillarsPage() {
+  const publishedPillars = pillarsOfInspiration.filter(p => p.is_published).sort((a, b) => a.order_index - b.order_index);
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,8 +31,8 @@ export default async function PillarsPage() {
       {/* Pillars Grid */}
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {pillars && pillars.length > 0 ? (
-            pillars.map((pillar) => (
+          {publishedPillars.length > 0 ? (
+            publishedPillars.map((pillar) => (
             <div key={pillar.id} className="flex flex-col">
               <div className="relative aspect-square w-full overflow-hidden bg-muted">
                 <Image

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { teammembers } from "@/data/team-member";
 import { PartnersPreview } from "@/components/landing/partners-preview";
 import { User } from 'lucide-react';
 import Image from "next/image";
@@ -6,14 +6,8 @@ import { Footer } from "@/components/footer";
 
 export const revalidate = 3600;
 
-export default async function PeoplePage() {
-  const supabase = await createClient();
-  
-  const { data: teamMembers } = await supabase
-    .from("team_members")
-    .select("*")
-    .eq("is_published", true)
-    .order("order_index");
+export default function PeoplePage() {
+  const publishedTeamMembers = teammembers.filter((t) => t.is_published).sort((a, b) => a.order_index - b.order_index);
 
   const placeholders = Array(9).fill(null).map((_, i) => ({
     id: `placeholder-${i}`,
@@ -22,7 +16,7 @@ export default async function PeoplePage() {
     image_url: null
   }));
 
-  const displayMembers = teamMembers && teamMembers.length > 0 ? teamMembers : placeholders;
+  const displayMembers = publishedTeamMembers && publishedTeamMembers.length > 0 ? publishedTeamMembers : placeholders;
 
   return (
     <div className="min-h-screen bg-background">

@@ -1,19 +1,11 @@
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/server";
+import { partners } from "@/data/partner";
 import { Footer } from "@/components/footer";
 
 export const revalidate = 3600;
 
-export default async function PartnersPage() {
-  const supabase = await createClient();
-  
-  // We'll still fetch from DB to support dynamic additions, but we'll also hardcode the main ones for the design match
-  const { data: partners } = await supabase
-    .from("cards")
-    .select("*")
-    .in("category", ["partner", "sponsor"])
-    .eq("is_published", true)
-    .order("order_index");
+export default function PartnersPage() {
+  const publishedPartners = partners.filter(p => p.is_published).sort((a, b) => a.order_index - b.order_index);
 
   return (
     <div className="min-h-screen bg-background">
@@ -58,8 +50,8 @@ export default async function PartnersPage() {
             <Image src="/walmart-logo.png" alt="Walmart" fill className="object-contain" />
           </div>
 
-          {/* Dynamic partners from DB if any */}
-          {partners?.map((partner) => (
+          {/* Dynamic partners from static data */}
+          {publishedPartners.map((partner) => (
              partner.image_url && (
               <div key={partner.id} className="h-20 w-48 relative grayscale hover:grayscale-0 transition-all duration-300">
                 <Image src={partner.image_url || "/placeholder.svg"} alt={partner.title} fill className="object-contain" />

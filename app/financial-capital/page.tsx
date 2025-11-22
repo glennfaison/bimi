@@ -1,7 +1,10 @@
 import { Footer } from "@/components/footer";
 import Image from "next/image";
+import { sponsors } from "@/data/sponsor";
 
 export default function FinancialCapitalPage() {
+  const publishedSponsors = sponsors.filter(s => s.is_published).sort((a, b) => a.order_index - b.order_index);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -119,18 +122,11 @@ export default function FinancialCapitalPage() {
           </h2>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            <div className="h-16 w-40 relative grayscale hover:grayscale-0 transition-all duration-300">
-              <Image src="/facebook-logo.png" alt="Facebook" fill className="object-contain" />
-            </div>
-            <div className="h-16 w-40 relative grayscale hover:grayscale-0 transition-all duration-300">
-              <Image src="/coca-cola-logo.png" alt="Coca Cola" fill className="object-contain" />
-            </div>
-            <div className="h-16 w-40 relative grayscale hover:grayscale-0 transition-all duration-300">
-              <Image src="/disney-inspired-logo.png" alt="Disney" fill className="object-contain" />
-            </div>
-            <div className="h-16 w-40 relative grayscale hover:grayscale-0 transition-all duration-300">
-              <Image src="/walmart-logo.png" alt="Walmart" fill className="object-contain" />
-            </div>
+            {publishedSponsors.map((sponsor) => (
+              <div key={sponsor.id} className="h-16 w-40 relative grayscale hover:grayscale-0 transition-all duration-300">
+                <Image src={sponsor.image_url || "/placeholder.svg"} alt={sponsor.title} fill className="object-contain" />
+              </div>
+            ))}
           </div>
         </div>
       </section>

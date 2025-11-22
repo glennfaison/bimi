@@ -1,19 +1,12 @@
-import { createClient } from "@/lib/supabase/server";
+import { companies } from "@/data/company";
 import { PartnersPreview } from "@/components/landing/partners-preview";
 import Image from "next/image";
 import { Footer } from "@/components/footer";
 
 export const revalidate = 3600;
 
-export default async function CompaniesPage() {
-  const supabase = await createClient();
-  
-  const { data: companies } = await supabase
-    .from("cards")
-    .select("*")
-    .eq("category", "company")
-    .eq("is_published", true)
-    .order("order_index");
+export default function CompaniesPage() {
+  const publishedCompanies = companies.filter(c => c.is_published).sort((a, b) => a.order_index - b.order_index);
 
   const placeholders = Array(9).fill(null).map((_, i) => ({
     id: `placeholder-${i}`,
@@ -22,7 +15,7 @@ export default async function CompaniesPage() {
     image_url: null
   }));
 
-  const displayCompanies = companies && companies.length > 0 ? companies : placeholders;
+  const displayCompanies = publishedCompanies && publishedCompanies.length > 0 ? publishedCompanies : placeholders;
 
   return (
     <div className="min-h-screen bg-background">

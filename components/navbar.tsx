@@ -39,7 +39,7 @@ export function Navbar() {
                   <Link href="/strategic-priority" className="w-full">Our Strategic Priority</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/pillars-of-inspiration" className="w-full">Our Pillar of Inspiration</Link>
+                  <Link href="/pillars-of-inspiration" className="w-full">Our Pillars of Inspiration</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link href="/our-people" className="w-full">Our People</Link>
