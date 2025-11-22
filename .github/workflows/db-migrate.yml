@@ -22,4 +22,3 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: ./scripts/run_all.sh
-        shell: zsh
