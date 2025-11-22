@@ -27,14 +27,13 @@ echo ""
 
 # Check if DATABASE_URL is set
 if [ -z "$DATABASE_URL" ]; then
-    echo -e "${RED}❌ ERROR: DATABASE_URL environment variable is not set${NC}"
-    echo ""
-    echo "Please set it first:"
-    echo "  export DATABASE_URL='postgresql://postgres:[password]@db.[project-ref].supabase.co:5432/postgres'"
-    echo ""
-    echo "You can find this in your Supabase project settings:"
-    echo "  Settings > Database > Connection string > URI"
-    exit 1
+    if [ -n "$POSTGRES_USER" ] && [ -n "$POSTGRES_PASSWORD" ] && [ -n "$POSTGRES_HOST" ] && [ -n "$POSTGRES_DATABASE" ]; then
+        export DATABASE_URL="postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:5432/$POSTGRES_DATABASE?sslmode=require"
+        echo -e "${YELLOW}ℹ️  DATABASE_URL constructed from environment variables${NC}"
+    else
+        echo -e "${RED}❌ ERROR: Required environment variables for constructing DATABASE_URL are not set${NC}"
+        exit 1
+    fi
 fi
 
 # Check if psql is installed

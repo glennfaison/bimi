@@ -8,6 +8,7 @@ on:
 jobs:
   migrate:
     runs-on: macos-latest
+    environment: main
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,5 +21,8 @@ jobs:
 
       - name: Run migration scripts
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          POSTGRES_USER: ${{ vars.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
+          POSTGRES_DATABASE: ${{ vars.POSTGRES_DATABASE }}
         run: ./scripts/run_all.sh
